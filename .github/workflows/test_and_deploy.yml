@@ -23,7 +23,7 @@ jobs:
 
     - name: Run Tests
       run: |
-        pytest tests/
+        pytest databricks-sql-pipeline/tests/
 
     - name: Configure Databricks CLI
       env:
