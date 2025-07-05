@@ -1,0 +1,40 @@
+name: Test and Deploy to Databricks
+
+on:
+  push:
+    branches: [ feature/local_vscode_databricks ]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Tests
+      run: |
+        pytest tests/
+
+    - name: Configure Databricks CLI
+      env:
+        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+        DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      run: |
+        mkdir -p ~/.databricks
+        echo "[DEFAULT]" > ~/.databricks/config
+        echo "host = $DATABRICKS_HOST" >> ~/.databricks/config
+        echo "token = $DATABRICKS_TOKEN" >> ~/.databricks/config
+
+    - name: Build Docker Image (optional)
+      run: |
+        docker build -t databricks-sql-pipeline:latest .
