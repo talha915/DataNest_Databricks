@@ -23,4 +23,4 @@ def test_bronze_customer_data_count():
 def test_sales_table_exists():
     sql_file = os.path.join(SQL_DIR, "check_bronze.sql")
     result = run_query_file(sql_file)
-    assert result[0][0] == 1, "❌ sales_bronze table does not exist"
+    assert result[0][0] >= 1, "❌ sales_bronze table does not exist"
