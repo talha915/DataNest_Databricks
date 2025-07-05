@@ -24,10 +24,8 @@ jobs:
 
     - name: Configure Databricks CLI
       run: |
-        mkdir -p ~/.databricks
-        echo "[DEFAULT]" > ~/.databricks/config
-        echo "host = $DATABRICKS_HOST" >> ~/.databricks/config
-        echo "token = $ACCESS_TOKEN" >> ~/.databricks/config
+        echo -e "$DATABRICKS_HOST\n$ACCESS_TOKEN\n" | databricks configure --token
+
 
     - name: Deploy code to Databricks Workspace
       run: |
