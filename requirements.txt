@@ -1,3 +1,4 @@
 databricks-cli
+databricks-sql-connector
 pytest
 pyspark
