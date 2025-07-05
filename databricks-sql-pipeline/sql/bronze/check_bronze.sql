@@ -1,2 +1,1 @@
-SELECT COUNT(*) FROM information_schema.tables
-WHERE table_schema = 'bronze' AND table_name = 'sales_bronze';
+SELECT COUNT(*) AS total_records FROM dev.bronze.sales_bronze;
