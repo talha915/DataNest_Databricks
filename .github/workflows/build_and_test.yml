@@ -1,11 +1,11 @@
-name: Test and Deploy to Databricks
+name: Build and Test Pipeline
 
 on:
   push:
     branches: [ feature/local_vscode_databricks ]
 
 jobs:
-  build-test-deploy:
+  build-test-pipeline:
     runs-on: ubuntu-latest
 
     env:
