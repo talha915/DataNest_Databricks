@@ -8,6 +8,11 @@ jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
 
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      HTTP_PATH: ${{ secrets.HTTP_PATH }}
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
