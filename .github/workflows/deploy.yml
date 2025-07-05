@@ -11,7 +11,7 @@ jobs:
 
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       DATABRICKS_EMAIL: ${{ secrets.DATABRICKS_EMAIL }}
 
     steps:
@@ -27,7 +27,7 @@ jobs:
         mkdir -p ~/.databricks
         echo "[DEFAULT]" > ~/.databricks/config
         echo "host = $DATABRICKS_HOST" >> ~/.databricks/config
-        echo "token = $DATABRICKS_TOKEN" >> ~/.databricks/config
+        echo "token = $ACCESS_TOKEN" >> ~/.databricks/config
 
     - name: Deploy code to Databricks Workspace
       run: |
