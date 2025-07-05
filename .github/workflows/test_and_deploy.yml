@@ -26,10 +26,6 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    - name: Run Tests
-      run: |
-        pytest databricks-sql-pipeline/tests/
-
     - name: Configure Databricks CLI
       env:
         DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
@@ -40,6 +36,10 @@ jobs:
         echo "host = $DATABRICKS_HOST" >> ~/.databricks/config
         echo "token = $DATABRICKS_TOKEN" >> ~/.databricks/config
 
-    - name: Build Docker Image (optional)
+    - name: Build Docker Image 
       run: |
         docker build -t databricks-sql-pipeline:latest .
+
+    - name: Run Tests
+      run: |
+        pytest tests/    
